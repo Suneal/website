@@ -1,0 +1,21 @@
+[
+
+{
+"title"    : "A Study of Data Store-based Home Automation",
+"category" : "",
+"tags"     : "Smart home Security, IoT Security",
+"url"      : "/website/2018/11/27/about-data-store/",
+"date"     : "2018 November 27",
+"content"  : "Kafle, K., Moran, K., Manandhar, S., Nadkarni, A., &amp;amp; Poshyvanyk, D. (2019). A Study of Data Store-based Home Automation. In Proceedings of the 9th ACM Conference on Data and Application Security and Privacy (CODASPY). Dallas, TX, USA.To Appear [ PDF  ] Abstract: Home automation platforms provide a new level of convenience by enabling consumers to automate various aspects of physical objects in their homes. While the convenience is beneficial, security flaws in the platforms or integrated third-party products can have serious consequences for the integrity of a user’s physical environment. In this paper we perform a systematic security evaluation of two popular smart home platforms, Google’s Nest platform and Philips Hue, that implement home automation “routines” (i.e., trigger-action programs involving apps and devices) via manipulation of state variables in a centralized data store. Our semi-automated analysis examines, among other things, platform access control enforcement, the rigor of non-system enforcement procedures, and the potential for misuse of routines. This analysis results in ten key findings with serious security implications. For instance, we demonstrate the potential for the misuse of smart home routines in the Nest platform to perform a lateral privilege escalation, illustrate how Nest’s product review system is ineffective at preventing multiple stages of this attack that it examines, and demonstrate how emerging platforms may fail to provide even bare-minimum security by allowing apps to arbitrarily add/remove other apps from the user’s smart home. Our findings draw attention to the unique security challenges of platforms that execute routines via centralized data stores, and highlight the importance of enforcing security by design in emerging home automation platforms."
+} ,
+
+{
+"title"    : "ACMiner&amp;#58; Extraction and Analysis of Authorization Checks in Android’s Middleware.",
+"category" : "",
+"tags"     : "Android, Access Control",
+"url"      : "/website/2018/11/27/about-acminer/",
+"date"     : "2018 November 27",
+"content"  : "Gorski III, S. A., Andow, B., Nadkarni, A., Manandhar, S., Enck, W., Bodden, E., &amp;amp; Bartel, A. (2019). ACMiner: Extraction and Analysis of Authorization Checks in Android’s Middleware. In Proceedings of the 9th ACM Conference on Data and Application Security and Privacy (CODASPY). Dallas, TX, USA. [To Appear]To Appear"
+} 
+
+]
