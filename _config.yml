@@ -8,7 +8,7 @@ description: > # this means to ignore newlines until "baseurl:"
   This is a personal website.
 
 author: Sunil Manandhar
-author_website: #http://juliaebert.com
+author_website: #www.cs.wm.edu/~sunil
 email: smanandhar@email.wm.edu
 
 baseurl: "/website"  # Subpath of your site, e.g. /blog. For deploying to github pages, this should match your repo name
@@ -18,7 +18,7 @@ url: "http://sunilmdr.com"  # Base hostname & protocol for your site
 
 twitter_username: 'ManUnderSun'
 github_username:  Suneal
-disqus_shortname: #juliaebert
+disqus_shortname: #
 google_analytics: #UA-54476418-1
 
 # Pagination
