@@ -2,11 +2,107 @@
 <html>
 
 {% include head.html %}
+<meta name="author" content="T-vK">
+<style>
+    
+    body,html {
+        margin:0;
+        padding:0;
+        height:100%;
+        width:100%;
+        overflow:hidden;
+    }
+    #config-container {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        bottom: 0px;
+        color: #FFFFFF;
+        width: 30%;
+        max-width: 400px;
 
+    }
+    #config-container>button {
+        margin-bottom: 3px;
+        width: 24%;
+    }
+    #config {
+        display: block;
+        margin-bottom: 3px;
+        width: 100%;
+        height: 60%;
+        white-space: pre;
+        overflow-wrap: normal;
+        overflow-x: scroll;
+    }
+</style>
 <body unresolved class="fullbleed layout vertical">
 <span id="browser-sync-binding"></span>
 <template is="dom-bind" id="app">
+    <div>
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script src="https://pixijs.download/dev-graphics-batch-pool/pixi.js"></script>
+        <script src="../scripts/SuperParticles.js"></script>
 
+
+        <script>
+            window.onload = function(){
+                window.sp = new SuperParticles({
+                    debug: {
+                        showFps: true
+                    }
+                })
+
+                $("#toggleAnimation").click(function() {
+                    const btn = $(this)
+                    const text = btn.text()
+                    if (text === 'Stop'){
+                        sp.stopAnimation()
+                        btn.text('Resume')
+                    } else {
+                        sp.startAnimation()
+                        btn.text('Stop')
+                    }
+                })
+
+                $("#apply").click(function() {
+                    const configJson = $("#config").val()
+                    sp.cfg = JSON.parse(configJson)
+                })
+                $("#hide").click(function() {
+                    const hideBtn = $(this)
+                    const hideBtnText = hideBtn.text()
+
+                    const configEl = $('#config')
+                    const applyBtn = $('#apply')
+                    const stopBtn = $('#toggleAnimation')
+                    const closeBtn = $('#close')
+                    if (hideBtnText === 'Hide'){
+                        configEl.hide()
+                        applyBtn.hide()
+                        stopBtn.hide()
+                        closeBtn.hide()
+                        hideBtn.css({position:'absolute', top:'0px', right:'0px'})
+                        hideBtn.text('Config')
+                    } else {
+                        configEl.show()
+                        applyBtn.show()
+                        stopBtn.show()
+                        closeBtn.show()
+                        hideBtn.css({position:'relative'})
+                        hideBtn.text('Hide')
+                    }
+                })
+                $("#close").click(function() {
+                    $('#config-container').hide()
+                })
+                $("#config").val(JSON.stringify(sp.cfg, null, '    '))
+                $("#hide").click()
+            }
+        </script>
+
+
+      </div>
   <paper-drawer-panel id="paperDrawerPanel">
     <!-- Drawer Scroll Header Panel -->
     <paper-scroll-header-panel drawer fixed>
@@ -17,9 +113,10 @@
         <!-- Drawer Content -->
         <paper-menu class="list" attr-for-selected="data-route" selected="{{route}}" on-iron-select="onMenuSelect">
           <a href="{{ site.baseurl }}/"><iron-icon icon="home"></iron-icon><span>Home</span></a>
-          <a href="{{ site.baseurl }}/about"><iron-icon icon="social:person"></iron-icon><span>About</span></a>
-          <a href="{{ site.baseurl }}/archive"><iron-icon icon="history"></iron-icon><span>Archive</span></a>
-          <a data-route="contact" href="{{ site.baseurl }}/feed.xml"><iron-icon icon="fa:rss"></iron-icon><span>RSS Feed</span></a>
+          <!-- <a href="{{ site.baseurl }}/cv"><iron-icon icon="social:person"></iron-icon><span>CV</span></a> -->
+          <a href="{{ site.baseurl }}/publication"><iron-icon icon="social:person"></iron-icon><span>Publications</span></a>
+          <a href="{{ site.baseurl }}/archive"><iron-icon icon="history"></iron-icon><span>Recent Highlights</span></a>
+          <!-- <a data-route="contact" href="{{ site.baseurl }}/feed.xml"><iron-icon icon="fa:rss"></iron-icon><span>RSS Feed</span></a> -->
         </paper-menu>
 
         <my-nav-subheader>Elsewhere</my-nav-subheader>
@@ -47,7 +144,7 @@
 
         <span class="space"></span>
 
-        <!-- Toolbar icons -->\
+        <!-- Toolbar icons -->
         <div class="top top-container">
           <my-search-bar class="top" id="search-input" searchjson="{{ site.baseurl }}/search.json"></my-search-bar>
         </div>

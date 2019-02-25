@@ -1,21 +1,21 @@
 ---
 layout: post
-title: About the Jekyll Polymer Theme
+title: A Study of Data Store-based Home Automation
+url: http://www.cs.wm.edu/~sgolden
 tags:
-    - jekyll
-    - design
+    - Smart home Security
+    - IoT Security
 ---
-
-*Taken from the readme file of the project's [Github repository](https://github.com/jtebert/jekyll-polymer))*
-
-A Jekyll theme built with Google's Polymer library and following the material design specifications.
-
-There are a few custom web components included designed to match Material design.
-
-I created this theme because I couldn't figure out how to set up a Jekyll project to play nicely with Polymer, and because I didn't find any Jekyll blog themes available that used Polymer or followed Google's material design specifications.
+Kafle, K., Moran, K., Manandhar, S., Nadkarni, A., & Poshyvanyk, D. (2019). A Study of Data Store-based Home Automation. In Proceedings of the 9th ACM Conference on Data and Application Security and Privacy (CODASPY). Dallas, TX, USA.To Appear [<a href= "https://kaushalkafle.com/pdf/kafle-codaspy19.pdf"> PDF </a> ]
 
 <!--more-->
-
+<p style="color:#f5f5f5">
+<h3> Abstract: </h3>
+<div style="text-align: justify">
+Home automation platforms provide a new level of convenience by enabling consumers to automate various aspects of physical objects in their homes. While the convenience is beneficial, security flaws in the platforms or integrated third-party products can have serious consequences for the integrity of a user’s physical environment. In this paper we perform a systematic security evaluation of two popular smart home platforms, Google’s Nest platform and Philips Hue, that implement home automation “routines” (i.e., trigger-action programs involving apps and devices) via manipulation of state variables in a centralized data store. Our semi-automated analysis examines, among other things, platform access control enforcement, the rigor of non-system enforcement procedures, and the potential for misuse of routines. This analysis results in ten key findings with serious security implications. For instance, we demonstrate the potential for the misuse of smart home routines in the Nest platform to perform a lateral privilege escalation, illustrate how Nest’s product review system is ineffective at preventing multiple stages of this attack that it examines, and demonstrate how emerging platforms may fail to provide even bare-minimum security by allowing apps to arbitrarily add/remove other apps from the user’s smart home. Our findings draw attention to the unique security challenges of platforms that execute routines via centralized data stores, and highlight the importance of enforcing security by design in emerging home automation platforms.
+</div>
+</p>
+<!-- 
 ## Features
 
 - Full-text search with [simple-jekyll-search](https://github.com/christian-fei/Simple-Jekyll-Search)
@@ -95,4 +95,4 @@ I created this theme because I couldn't figure out how to set up a Jekyll projec
 
 - JS and HTML aren't minimized
 - Too much space on cards between end of excerpt and read more button
-
+ -->

@@ -1,12 +1,12 @@
 ---
 layout: page
-title: Archive
 permalink: /archive/
 ---
 
 {% comment %}
 Source: https://codinfox.github.io/dev/2015/03/06/use-tags-and-categories-in-your-jekyll-based-github-pages/
 {% endcomment %}
+
 {% assign rawtags = "" %}
 {% for post in site.posts %}
     {% assign ttags = post.tags | join:'|' | append:'|' %}
@@ -26,22 +26,26 @@ Source: https://codinfox.github.io/dev/2015/03/06/use-tags-and-categories-in-you
     {% endif %}
 {% endfor %}
 
-<h1>Tags</h1>
+<!-- <h1>Tags</h1>
 
 {% for tag in tags %}
     {% assign t = tag | slugify %}
     <x-chip href="{{ site.jekyll-archives.permalinks.tag | prepend: site.baseurl | replace: ':name', t | replace: '//', '/' }}">{{ tag | capitalize }}</x-chip>
-{% endfor %}
+{% endfor %} -->
 
-<h1>Posts by Date</h1>
+
+<h1>Recent Highlights</h1>
 
 <div id="archive">
+
 {% for post in site.posts %}
     {% capture currentyear %}{{post.date | date: "%Y"}}{% endcapture %}
     {% if currentyear != year %}
         <h2>{{ currentyear }}</h2>
         {% capture year %}{{currentyear}}{% endcapture %}
     {% endif %}
-    <p>{{ post.date | date: "%B %-d" }}&nbsp;&nbsp;<a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></p>
+    <p style="color:#f5f5f5">{{ post.date | date: "%B %-d" }}&nbsp;&nbsp;Our paper <a href="{{ post.url | prepend: site.baseurl }}"> {{ post.title }}</a> has been accepted for publication at the ACM Conference on Data and Application Security and Privacy (CODASPY'19) </p>
 {% endfor %}
+<p style="color:#f5f5f5">December 28&nbsp;&nbsp;Our recent investigation on smart home security has received wide press coverage. See the most detailed articles here: <a href="https://www.washingtonpost.com/local/computer-scientists-study-security-threats-to-smart-homes/2018/12/28/243a1e6e-0b10-11e9-8942-0ef442e59094_story.html?utm_term=.c8aff4c0b379"> Washington Post</a>,  <a href="https://www.dailypress.com/news/science/dp-nws-evg-smart-home-invasion-20181211-story.html">Daily Press</a>,  <a href="https://www.the-ambient.com/features/new-smart-home-attack-nest-hue-1237">The Ambient</a></p>
+
 </div>

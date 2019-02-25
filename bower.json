@@ -2,10 +2,10 @@
   "name": "jekyll-polymer-theme",
   "version": "0.1.0",
   "authors": [
-    "Julia Ebert <julia@juliaebert.com>"
+    "Sunil Manandhar <smanandhar@email.wm.edu>"
   ],
   "license": "MIT",
-  "homepage": "juliaebert.com",
+  "homepage": "sunilmdr.com",
   "ignore": [
     "**/.*",
     "node_modules",

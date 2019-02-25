@@ -2,27 +2,27 @@ source: app
 destination: app/_site
 
 # Site settings
-title: Jekyll Polymer Theme
-subtitle: Google material design for static sites
+title: Sunil Manandhar
+subtitle: Ph.D. Candidate, William and Mary
 description: > # this means to ignore newlines until "baseurl:"
-  This is a material design theme for Polymer using Google's Polymer library. It's still an early draft, so be nice.
+  This is a personal website.
 
-author: Julia Ebert
-author_website: http://juliaebert.com
-email: julia@juliaebert.com
+author: Sunil Manandhar
+author_website: #http://juliaebert.com
+email: smanandhar@email.wm.edu
 
-baseurl: "/jekyll-polymer"  # Subpath of your site, e.g. /blog. For deploying to github pages, this should match your repo name
+baseurl: "/website"  # Subpath of your site, e.g. /blog. For deploying to github pages, this should match your repo name
                             # Currently `gulp serve:dist` does not work with a baseurl specified. For this purpose,
                             # temporarily comment out this parameter
-url: "http://juliaebert.com"  # Base hostname & protocol for your site
+url: "http://sunilmdr.com"  # Base hostname & protocol for your site
 
-twitter_username: ''
-github_username:  jtebert
-disqus_shortname: juliaebert
-google_analytics: UA-54476418-1
+twitter_username: 'ManUnderSun'
+github_username:  Suneal
+disqus_shortname: #juliaebert
+google_analytics: #UA-54476418-1
 
 # Pagination
-paginate: 5
+paginate: 10
 paginate_path: "page:num"
 excerpt_separator: <!--more-->
 
@@ -38,3 +38,12 @@ permalink: /:categories/:year/:month/:day/:title/
 # Archive settings
 jekyll-archives:
   enabled: ['tags']
+  
+colors:
+  black:     '#111111'
+  white:     '#f8f8f8'
+  blue:      '#49a7e9'
+  green:     '#9bcf2f'
+  purple:    '#c869bf'
+  orange:    '#fab125'
+  turquoise: '#0fbfcf'
