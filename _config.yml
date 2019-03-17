@@ -19,7 +19,7 @@ url: "http://sunilmdr.com"  # Base hostname & protocol for your site
 twitter_username: 'ManUnderSun'
 github_username:  Suneal
 disqus_shortname: #
-google_analytics: #UA-54476418-1
+google_analytics: #
 
 # Pagination
 paginate: 10
@@ -38,12 +38,3 @@ permalink: /:categories/:year/:month/:day/:title/
 # Archive settings
 jekyll-archives:
   enabled: ['tags']
-  
-colors:
-  black:     '#111111'
-  white:     '#f8f8f8'
-  blue:      '#49a7e9'
-  green:     '#9bcf2f'
-  purple:    '#c869bf'
-  orange:    '#fab125'
-  turquoise: '#0fbfcf'
