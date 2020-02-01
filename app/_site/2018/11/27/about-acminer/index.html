@@ -1,0 +1,414 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Sunil Manandhar" />
+
+    <title>ACMiner&#58; Extraction and Analysis of Authorization Checks in Android’s Middleware.</title>
+    <meta name="description" content="Gorski III, S. A., Andow, B., Nadkarni, A.,  Manandhar, S. , Enck, W., Bodden, E., &amp; Bartel, A. (2019). ACMiner: Extraction and Analysis of Authorization...">
+
+    <link rel="canonical" href="http://localhost:4000/website/2018/11/27/about-acminer/">
+    <link rel="alternate" type="application/rss+xml" title="Sunil Manandhar" href='http://localhost:4000/website/feed.xml' />
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <!-- Chrome for Android theme color -->
+    <!-- TODO: Change to match final color scheme -->
+    <meta name="theme-color" content="#607D8B">
+
+    <!-- Web Application Manifest -->
+    <link rel="manifest" href="/website/manifest.json">
+
+    <!-- Tile color for Win8 -->
+    <!-- TODO: Change to match final color scheme -->
+    <meta name="msapplication-TileColor" content="#FF5722">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Sunil Manandhar">
+    <link rel="icon" sizes="192x192" href="/website/images/touch/chrome-touch-icon-192x192.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Sunil Manandhar">
+    <link rel="apple-touch-icon" href="/website/images/touch/apple-touch-icon.png">
+
+    <!-- Tile icon for Win8 (144x144) -->
+    <meta name="msapplication-TileImage" content="/website/images/touch/ms-touch-icon-144x144-precomposed.png">
+
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="/website/styles/main.css">
+    <!-- endbuild-->
+
+    <!-- build:css styles/code-highlight.css -->
+    <link rel="stylesheet" href="/website/styles/code-highlight.css">
+    <!-- endbuild-->
+
+    <link rel="stylesheet" href="/website/scripts/lightbox/css/lightbox.css">
+
+    <!-- build:js bower_components/webcomponentsjs/webcomponents-lite.min.js -->
+    <script src="/website/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <!-- endbuild -->
+
+    <!-- will be replaced with elements/elements.vulcanized.html -->
+    <link rel="import" href="/website/elements/elements.html">
+    <!-- endreplace-->
+
+    <!-- For shared styles, shared-styles.html import in elements.html -->
+    <style is="custom-style" include="shared-styles"></style>
+    <script type="text/javascript" src="/website/scripts/SuperParticles.js"></script>
+</head>
+<meta name="author" content="T-vK">
+<style>
+    
+    body,html {
+        margin:0;
+        padding:0;
+        height:100%;
+        width:100%;
+        overflow:hidden;
+    }
+    #config-container {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        bottom: 0px;
+        color: #FFFFFF;
+        width: 30%;
+        max-width: 400px;
+
+    }
+    #config-container>button {
+        margin-bottom: 3px;
+        width: 24%;
+    }
+    #config {
+        display: block;
+        margin-bottom: 3px;
+        width: 100%;
+        height: 60%;
+        white-space: pre;
+        overflow-wrap: normal;
+        overflow-x: scroll;
+    }
+</style>
+<body unresolved class="fullbleed layout vertical">
+<span id="browser-sync-binding"></span>
+<template is="dom-bind" id="app">
+    <div>
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script src="https://pixijs.download/dev-graphics-batch-pool/pixi.js"></script>
+        <script src="/website/scripts/SuperParticles.js"></script>
+      
+
+        <script>
+            window.onload = function(){
+                window.sp = new SuperParticles({
+                    debug: {
+                        showFps: true
+                    }
+                })
+
+                $("#toggleAnimation").click(function() {
+                    const btn = $(this)
+                    const text = btn.text()
+                    if (text === 'Stop'){
+                        sp.stopAnimation()
+                        btn.text('Resume')
+                    } else {
+                        sp.startAnimation()
+                        btn.text('Stop')
+                    }
+                })
+
+                $("#apply").click(function() {
+                    const configJson = $("#config").val()
+                    sp.cfg = JSON.parse(configJson)
+                })
+                $("#hide").click(function() {
+                    const hideBtn = $(this)
+                    const hideBtnText = hideBtn.text()
+
+                    const configEl = $('#config')
+                    const applyBtn = $('#apply')
+                    const stopBtn = $('#toggleAnimation')
+                    const closeBtn = $('#close')
+                    if (hideBtnText === 'Hide'){
+                        configEl.hide()
+                        applyBtn.hide()
+                        stopBtn.hide()
+                        closeBtn.hide()
+                        hideBtn.css({position:'absolute', top:'0px', right:'0px'})
+                        hideBtn.text('Config')
+                    } else {
+                        configEl.show()
+                        applyBtn.show()
+                        stopBtn.show()
+                        closeBtn.show()
+                        hideBtn.css({position:'relative'})
+                        hideBtn.text('Hide')
+                    }
+                })
+                $("#close").click(function() {
+                    $('#config-container').hide()
+                })
+                $("#config").val(JSON.stringify(sp.cfg, null, '    '))
+                $("#hide").click()
+            }
+        </script>
+
+
+      </div>
+  <paper-drawer-panel id="paperDrawerPanel">
+    <!-- Drawer Scroll Header Panel -->
+    <paper-scroll-header-panel drawer fixed>
+      <div class="wrapper"> <!-- necessary to push copyright to bottom -->
+        <!-- Drawer Toolbar -->
+        <nav-image src="/website/images/material-bg-10.png" id="menu-img"></nav-image>
+
+        <!-- Drawer Content -->
+        <paper-menu class="list" attr-for-selected="data-route" selected="" on-iron-select="onMenuSelect">
+          <a href="/website/"><iron-icon icon="home"></iron-icon><span>Home</span></a>
+          <!-- <a href="/website/cv"><iron-icon icon="social:person"></iron-icon><span>CV</span></a> -->
+          <a href="/website/publication"><iron-icon icon="social:person"></iron-icon><span>Publications</span></a>
+          <a href="/website/archive"><iron-icon icon="history"></iron-icon><span>Recent Highlights</span></a>
+          <!-- <a data-route="contact" href="/website/feed.xml"><iron-icon icon="fa:rss"></iron-icon><span>RSS Feed</span></a> -->
+        </paper-menu>
+
+        <my-nav-subheader>Elsewhere</my-nav-subheader>
+        <paper-menu class="list" on-iron-select="onMenuSelect">
+          
+          
+          <a href="https://github.com/Suneal"><iron-icon icon="fa:github"></iron-icon><span>My Github</span></a>
+          
+          
+          <a data-route="contact" href="mailto:smanandhar@email.wm.edu"><iron-icon icon="mail"></iron-icon><span>Contact</span></a>
+          
+        </paper-menu>
+        <div class="push"></div>
+      </div>
+      <div id="copyright-info">&copy; 2020, Sunil Manandhar</div>
+    </paper-scroll-header-panel>
+
+    <!-- Main Area -->
+    <paper-scroll-header-panel main id="headerPanelMain" condenses keep-condensed-header>
+      <!-- Main Toolbar -->
+      <paper-toolbar id="mainToolbar" class="tall">
+        <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
+
+        <span class="space"></span>
+
+        <!-- Toolbar icons -->
+        <div class="top top-container">
+          <my-search-bar class="top" id="search-input" searchjson="/website/search.json"></my-search-bar>
+        </div>
+
+        <!-- Application name -->
+        <div class="middle middle-container">
+          <div class="app-name">Sunil Manandhar</div>
+        </div>
+
+        <!-- Application sub title -->
+        <div class="bottom bottom-container">
+          <!--<div class="bottom-title">Ph.D. Candidate, William and Mary</div>-->
+          <div class="bottom-title">Ph.D. Candidate, William and Mary</div>
+        </div>
+      </paper-toolbar>
+
+      <!-- Main Content -->
+      <div class="content"><style>
+  body {
+    background-color: #f9f9f9 !important;
+  }
+</style>
+
+<div id="post">
+
+  
+
+  <h1 class="paper-font-display1" style="color:#f5f5f5">ACMiner&#58; Extraction and Analysis of Authorization Checks in Android’s Middleware.</h1>
+
+  <!-- Author -->
+
+
+<div class="author">
+    
+    
+    
+        <span class="paper-font-subhead" id="date">
+            
+            
+                November 27, 2018
+            
+        </span>
+    
+</div>
+
+
+  <div id="post-content" style="color:#f5f5f5">
+    <p style="color:#f5f5f5">
+Gorski III, S. A., Andow, B., Nadkarni, A., <b> Manandhar, S. </b>, Enck, W., Bodden, E., &amp; Bartel, A. (2019). ACMiner: Extraction and Analysis of Authorization Checks in Android’s Middleware. In Proceedings of the 9th ACM Conference on Data and Application Security and Privacy (CODASPY). Dallas, TX, USA. [<a href="https://enck.org/pubs/gorski-codaspy19.pdf"> PDF </a> ]
+</p>
+<!--more-->
+<p style="color:#f5f5f5">
+
+</p>
+
+<!-- 
+## Features
+
+- Full-text search with [simple-jekyll-search](https://github.com/christian-fei/Simple-Jekyll-Search)
+- Paginated home page
+- Support for featured post images (appears on cards in previews)
+- Threaded comments with Disqus
+- Google Analytics integration
+
+## Installation instructions
+
+(Instructions are based off of those for the [Polymer Starter Kit](https://github.com/PolymerElements/polymer-starter-kit).)
+
+- Clone this repository or download it as a .zip file and unzip.
+- Install jekyll (and any other Ruby gems) with `bundle install`. (Prerequisite: must have Ruby installed. You may also have to install bundler with `gem install bundler`.)
+- From the project root folder, run `npm install -g gulp bower && npm install && bower install`. (See the [Polymer Starter Kit installation instructions](https://github.com/PolymerElements/polymer-starter-kit#install-dependencies) for more details or troubleshooting.)
+
+## Structure
+
+- `app/`: All Jekyll content is here. (This is where all the editing happens)
+  - `bower_components`: Content installed via bower ends up here
+  - `elements/`: Custom web components using Polymer
+  - `images/`: User images
+  - 'media/': Other user content (PDFs, videos, etc.) for final product
+  - `scripts/`: Javascript files
+  - `styles/`: Custom CSS
+- `dist/`: Built output from Gulp. (Use to publish static content)
+- `node_modules`: Content installed via npm goes here
+
+## Deployment
+
+### Serve/watch
+
+`gulp serve`: Starts a jekyll serve process on the default port (4000 or whatever is specified in `_config.yml`).
+
+`gulp serve --port 6666`: Start serving on port `6666`
+
+`gulp serve:dist`: Build as below, and serve the result from the `dist/` directory. (Useful for testing changes to the gulpfile.)
+
+### Build and vulcanize
+
+`gulp`: Builds the files with jekyll, vulcanizes, minimizes, and puts the result in the `dist/` directory. (This can be slow.)
+
+## Deploy
+
+`gulp deploy-gh-pages`: Deploy the current build to the gh-pages branch of your repository.
+
+`gulp build-deploy-gh-pages`: Rebuild and then deploy. (Equivalent to `gulp && gulp deploy-gh-pages`)
+
+## Future Improvements:
+
+- Improve gulp build
+    - Minimize JS, CSS, HTML
+- Search
+    - Ripple effect in search results on click (needs set height)
+    - Escape toggles search show
+    - arrow keys/tab moves focus on search results
+    - better animation for search bar leaving/entering
+- Navigation drawer
+    - Change hover effect on drawer items (see Google Music)
+    - Make selected/active items in drawer colored
+- Page transition animations
+- Give option of setting card-colorbar color
+- Add ripple effect to nav drawer menu items
+- Pagination:
+    - Maybe replace with actual buttons
+    - hover effects like buttons?
+    - Handle if it gets too wide for screen? (limit number of page links)
+- Tags
+    - Show tags with posts
+    - Allow filtering by tag
+- Add material box or lightbox for images
+- Add 'source' option for YAML frontmatter
+- increase spacing between list items
+- Fix things like header-panel to utilize updates to polymer paper elements
+
+### Known issues
+
+- JS and HTML aren't minimized
+- Too much space on cards between end of excerpt and read more button
+ -->
+
+  </div>
+
+  
+    
+    <x-chip href="/website/tag/android/">Android</x-chip>
+  
+    
+    <x-chip href="/website/tag/access-control/">Access control</x-chip>
+  
+
+  <hr/>
+
+  <div class="share section">
+    <a href="https://facebook.com/sharer.php?u=http://localhost:4000/2018/11/27/about-acminer/" rel="nofollow" target="_blank" title="Share on Facebook">
+      <paper-icon-button icon="fa:facebook"></paper-icon-button></a>
+    <a href="https://plus.google.com/share?url=http://localhost:4000/2018/11/27/about-acminer/" rel="nofollow" target="_blank" title="Share on Google+">
+      <paper-icon-button icon="fa:google-plus"></paper-icon-button></a>
+    <a href="http://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/2018/11/27/about-acminer/&title=ACMiner&#58; Extraction and Analysis of Authorization Checks in Android’s Middleware.&summary=&source=http://localhost:4000" rel="nofollow" target="_blank" title="Share on LinkedIn">
+      <paper-icon-button icon="fa:linkedin"></paper-icon-button></a>
+    <a href="http://www.reddit.com/submit?url=http://localhost:4000/2018/11/27/about-acminer/&title=ACMiner&#58; Extraction and Analysis of Authorization Checks in Android’s Middleware." rel="nofollow" target="_blank" title="Share on Reddit">
+      <paper-icon-button icon="fa:reddit"></paper-icon-button></a>
+    <a href="http://www.tumblr.com/share/link?url=http://localhost:4000/2018/11/27/about-acminer/&name={[ page.title }}&description=" rel="nofollow" target="_blank" title="Share on Tumblr">
+      <paper-icon-button icon="fa:tumblr"></paper-icon-button></a>
+    <a href="https://twitter.com/intent/tweet?text=ACMiner&#58; Extraction and Analysis of Authorization Checks in Android’s Middleware.&url=http://localhost:4000/2018/11/27/about-acminer/&via=ManUnderSun&related=ManUnderSun" rel="nofollow" target="_blank" title="Share on Twitter">
+      <paper-icon-button icon="fa:twitter"></paper-icon-button></a>
+  </div>
+
+  <div class="section">
+    
+    <paper-button raised disabled>
+      <iron-icon icon="arrow-back"></iron-icon>&emsp;Previous Post<iron-icon></iron-icon>
+    </paper-button>
+    
+
+    
+      <a href="/website/2018/11/27/about-data-store/"><paper-button raised class="accent">
+        <iron-icon></iron-icon>Next Post&emsp;<iron-icon icon="arrow-forward"></iron-icon>
+      </paper-button></a>
+    
+  </div>
+
+  
+
+</div>
+</div>
+
+    </paper-scroll-header-panel>
+  </paper-drawer-panel>
+
+  <paper-toast id="toast">
+    <span class="toast-hide-button" role="button" tabindex="0" onclick="app.$.toast.hide()">Ok</span>
+  </paper-toast>
+
+</template>
+
+<!-- MathJax -->
+<script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<!-- build:js scripts/app.js -->
+<script src="/website/scripts/app.js"></script>
+<!-- endbuild-->
+
+
+
+
+<script type="text/javascript" src="/website/scripts/lightbox/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="/website/scripts/lightbox/js/lightbox.js"></script>
+
+</body>
+
+</html>

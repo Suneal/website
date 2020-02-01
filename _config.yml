@@ -1,0 +1,49 @@
+source: app
+destination: app/_site
+
+# Site settings
+title: Sunil Manandhar
+subtitle: Ph.D. Candidate, William and Mary
+description: > # this means to ignore newlines until "baseurl:"
+  This is a personal website.
+
+author: Sunil Manandhar
+author_website: #www.cs.wm.edu/~sunil
+email: smanandhar@email.wm.edu
+
+baseurl: "/website"  # Subpath of your site, e.g. /blog. For deploying to github pages, this should match your repo name
+                            # Currently `gulp serve:dist` does not work with a baseurl specified. For this purpose,
+                            # temporarily comment out this parameter
+url: "http://sunilmdr.com"  # Base hostname & protocol for your site
+
+twitter_username: 'ManUnderSun'
+github_username:  Suneal
+disqus_shortname: #
+google_analytics: #UA-54476418-1
+
+# Pagination
+paginate: 10
+paginate_path: "page:num"
+excerpt_separator: <!--more-->
+
+# Gems
+gems:
+  - jekyll-archives
+  - jekyll-paginate
+
+# Build settings
+markdown: kramdown
+permalink: /:categories/:year/:month/:day/:title/
+
+# Archive settings
+jekyll-archives:
+  enabled: ['tags']
+  
+colors:
+  black:     '#111111'
+  white:     '#f8f8f8'
+  blue:      '#49a7e9'
+  green:     '#9bcf2f'
+  purple:    '#c869bf'
+  orange:    '#fab125'
+  turquoise: '#0fbfcf'

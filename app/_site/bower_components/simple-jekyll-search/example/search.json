@@ -1,0 +1,27 @@
+[
+  
+    {
+      "title"    : "Towards a Natural Perspective of Smart Homes for Practical Security and Safety Analyses.",
+      "category" : "",
+      "tags"     : "Smart Home, Policy Specification",
+      "url"      : "/website/2020/01/12/about-helion/",
+      "date"     : "2020-01-12 00:00:00 -0500"
+    } ,
+  
+    {
+      "title"    : "A Study of Data Store-based Home Automation",
+      "category" : "",
+      "tags"     : "Smart home Security, IoT Security",
+      "url"      : "/website/2018/11/27/about-data-store/",
+      "date"     : "2018-11-27 00:00:00 -0500"
+    } ,
+  
+    {
+      "title"    : "ACMiner&amp;#58; Extraction and Analysis of Authorization Checks in Android’s Middleware.",
+      "category" : "",
+      "tags"     : "Android, Access Control",
+      "url"      : "/website/2018/11/27/about-acminer/",
+      "date"     : "2018-11-27 00:00:00 -0500"
+    } 
+  
+]
