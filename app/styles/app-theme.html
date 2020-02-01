@@ -26,7 +26,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   :root {
     --primary-text-color: #212121;
-    --primary-background-color: #f5f5f5;
+    --primary-background-color: #142A32;
     --secondary-text-color: #727272;
     --disabled-text-color: #bdbdbd;
     --divider-color: #E0E0E0;
@@ -440,12 +440,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   /** Customize cards to better match material specifications easily **/
   paper-card.custom {
     width: 100%;
-    background: #ffffff;
-    margin-bottom: 16px;
+    opacity: 0.6
+    padding-top:5%;
+    margin-bottom: 0px;
     /* Make all images in header 16:9 */
     --paper-card-header-image: {
+       
        height: 0;
-       padding-bottom: 56.25%;
+       padding-bottom: 45.25%;
+       
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 50%;
      }
   }
   paper-card.custom .title {
