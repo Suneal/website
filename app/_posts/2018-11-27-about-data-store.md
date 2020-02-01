@@ -5,6 +5,7 @@ url: http://www.cs.wm.edu/~sgolden
 tags:
     - Smart home Security
     - IoT Security
+conference: In Proceedings of the 9th ACM Conference on Data and Application Security and Privacy (CODASPY)
 ---
 Kafle, K., Moran, K., <b> Manandhar, S. </b>, Nadkarni, A., & Poshyvanyk, D. (2019). A Study of Data Store-based Home Automation. In Proceedings of the 9th ACM Conference on Data and Application Security and Privacy (CODASPY). Dallas, TX, USA. [<a href= "https://kaushalkafle.com/pdf/kafle-codaspy19.pdf"> PDF </a> ]
 

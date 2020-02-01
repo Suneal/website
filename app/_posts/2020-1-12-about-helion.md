@@ -5,6 +5,7 @@ tags:
     - Smart Home
     - Policy Specification
 color: white
+conference: IEEE Symposium on Security and Privacy (S&P) 2020
 ---
 <p style="color:#f5f5f5">
 <b>Manandhar, S. </b>, Moran, K., Kafle, K., Tang, R., Poshyvanyk, D., Nadkarni, A. (2020). Towards a Natural Perspective of Smart Homes for Practical Security and Safety Analyses, To appear in IEEE Symposium on Security and Privacy (S&P) 2020  [<a href= "https://arxiv.org/pdf/1907.00124.pdf"> arXiv preprint </a> ] 
