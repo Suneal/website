@@ -95,6 +95,23 @@
         overflow-wrap: normal;
         overflow-x: scroll;
     }
+
+      /** Customize cards to better match material specifications easily **/
+  paper-card.mero {
+    width: 100%;
+    opacity: 0.6;
+    padding-top: 5%;
+    margin-bottom: 0px;
+    /* Make all images in header 16:9 */
+    --paper-card-header-image: {
+      height: 0;
+      padding-bottom: 45.25%; 
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 50%;
+     }
+  }
 </style>
 <body unresolved class="fullbleed layout vertical">
 <span id="browser-sync-binding"></span>
@@ -221,7 +238,7 @@
 
       <!-- Main Content -->
       <div class="content"><div class="card-wrapper">
-    <paper-card class="custom"
+    <paper-card class="mero"
                 
                 image="/website/images/sunil2.png"
                 >
