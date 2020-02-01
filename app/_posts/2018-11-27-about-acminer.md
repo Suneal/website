@@ -7,11 +7,11 @@ tags:
 color: white
 ---
 <p style="color:#f5f5f5">
-Gorski III, S. A., Andow, B., Nadkarni, A., Manandhar, S., Enck, W., Bodden, E., & Bartel, A. (2019). ACMiner: Extraction and Analysis of Authorization Checks in Android’s Middleware. In Proceedings of the 9th ACM Conference on Data and Application Security and Privacy (CODASPY). Dallas, TX, USA. [To Appear]
+Gorski III, S. A., Andow, B., Nadkarni, A., <b> Manandhar, S. </b>, Enck, W., Bodden, E., & Bartel, A. (2019). ACMiner: Extraction and Analysis of Authorization Checks in Android’s Middleware. In Proceedings of the 9th ACM Conference on Data and Application Security and Privacy (CODASPY). Dallas, TX, USA. [<a href= "https://enck.org/pubs/gorski-codaspy19.pdf"> PDF </a> ]
 </p>
 <!--more-->
 <p style="color:#f5f5f5">
-To Appear
+
 </p>
 
 <!-- 

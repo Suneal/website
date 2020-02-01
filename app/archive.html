@@ -41,7 +41,7 @@ Source: https://codinfox.github.io/dev/2015/03/06/use-tags-and-categories-in-you
 {% for post in site.posts %}
     {% capture currentyear %}{{post.date | date: "%Y"}}{% endcapture %}
     {% if currentyear != year %}
-        <h2>{{ currentyear }}</h2>
+        <h2 style="color:grey">{{ currentyear }}</h2>
         {% capture year %}{{currentyear}}{% endcapture %}
     {% endif %}
     <p style="color:#f5f5f5">{{ post.date | date: "%B %-d" }}&nbsp;&nbsp;Our paper <a href="{{ post.url | prepend: site.baseurl }}"> {{ post.title }}</a> has been accepted for publication at the ACM Conference on Data and Application Security and Privacy (CODASPY'19) </p>
