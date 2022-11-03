@@ -5,7 +5,7 @@
     "connect-history-api-fallback": "^1.1.0",
     "del": "^2.0.2",
     "glob-all": "^3.0.1",
-    "gulp": "^3.8.5",
+    "gulp": "^4.0.2",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-cache": "^0.4.0",
     "gulp-callback": "0.0.3",
@@ -28,7 +28,7 @@
     "require-dir": "^0.3.0",
     "run-sequence": "^1.0.2",
     "vulcanize": ">= 1.4.2",
-    "web-component-tester": "^4.0.0",
+    "web-component-tester": "^6.9.2",
     "yamljs": "^0.2.5",
     "yargs": "^4.1.0"
   },
